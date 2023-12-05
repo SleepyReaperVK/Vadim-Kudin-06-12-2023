@@ -1,10 +1,10 @@
 import React, { useEffect } from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
-import Navbar from './components/Navbar';
+import CustomNavbar from './components/CustomNavbar';
 import WeatherPage from './pages/WeatherPage';
 import FavoritesPage from './pages/FavoritesPage';
-
+import ErrorPage from './pages/404Page';
 
 function App() {
   const isDarkTheme = useSelector((state) => state.theme.isDarkTheme);
@@ -19,11 +19,12 @@ function App() {
   return (
     <div>
       <div>
-        <Navbar />
+        <CustomNavbar />
       </div>
       <Routes>
-        <Route path="/" element={<WeatherPage />} />
+        <Route path="/"  element={<WeatherPage />} />
         <Route path="/favorites" element={<FavoritesPage />} />
+        <Route path='/*' element={<ErrorPage />}/>
       </Routes>
     </div>
   );

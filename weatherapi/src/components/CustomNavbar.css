@@ -1,0 +1,15 @@
+.theme-toggle {
+    margin-top: 10px;
+  }
+
+  /* Add styles for the light theme */
+.theme-light .nav-link.active {
+  background-color: lightblue;
+  /* Add any other styles for the light theme */
+}
+
+/* Add styles for the dark theme */
+.theme-dark .nav-link.active {
+  background-color: darkblue;
+  /* Add any other styles for the dark theme */
+}
