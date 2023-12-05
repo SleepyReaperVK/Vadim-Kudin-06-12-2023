@@ -2,8 +2,8 @@ import React , {useEffect} from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { toggleTheme } from '../redux/themeSlice';
 import { Navbar, Nav, Button } from 'react-bootstrap';
-import { Link } from 'react-router-dom';
-import { useNavigate } from 'react-router-dom';
+import { Link ,useNavigate } from 'react-router-dom';
+
 import './CustomNavbar.css'
 import 'bootstrap/dist/css/bootstrap.min.css';
 
@@ -28,12 +28,14 @@ function CustomNavbar() {
   };
   const handleLinkedIn = () => {
    
-    navigate('https://www.linkedin.com/in/vadim-kudin-5439aa23a/');
+    const linkedInUrl = 'https://www.linkedin.com/in/vadim-kudin-5439aa23a/';
+    window.location.href = linkedInUrl;
   };
 
   const handleWhatsApp = () => {
+    const whatsApp = 'https://wa.me/+9720545632346';
+    window.location.href = whatsApp;
 
-    navigate('https://wa.me/+9720545632346');
   };
 
 
