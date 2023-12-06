@@ -10,4 +10,6 @@ To the Demo:__________
         using Redux store to push choosen city to favorites and retrive it without fetching aditional Data.
     ►Favorite Page 
 ### What's to Come
-
+    ► optimize searchBar , by using only ValidChar and by useRef/useMemo to prevent
+    Re-render
+    ►using another endpoint to get user location and using is as the new Default 
