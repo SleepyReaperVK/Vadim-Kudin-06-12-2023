@@ -10,6 +10,7 @@ import FiveDayData from '../components/FiveDayData';
 import './WeatherPage.css'
 import { setLocation } from '../redux/locationSlice';
 import { addCityToFavorites ,removeKeyFromFavorites } from '../redux/favoritesSlice';
+import DataFetch from '../data/DataFetch';
 
 function WeatherPage() {
   const dispatch = useDispatch();
@@ -17,10 +18,10 @@ function WeatherPage() {
   const locationStore = useSelector((state) => state.location);
   const FavArr = useSelector((state) => state.favorite.favoritesArr);
 
-   const [city, setCity] = useState(locationStore.city || '');
-  const [cityKey, setCityKey] = useState(locationStore.key || 0); 
-  const [cityCurrentConditions, setCityCurrentConditions] = useState(locationStore.cityCurrentConditions || null); 
-  const [city5DayConditions, setCity5DayConditions] = useState(locationStore.city5DayConditions || null); 
+  const [city, setCity] = useState('');
+  const [cityKey, setCityKey] = useState(0); 
+  const cityCurrentConditions=useSelector((state) => state.location.cityCurrentConditions);
+  const city5DayConditions=useSelector((state) => state.location.city5DayConditions);
 
   const [cityList, setCityList] = useState([]);
   
@@ -38,8 +39,6 @@ const [weatherIconUrl, setWeatherIconUrl] = useState(null);
         const data = await fetchAutoComplete(city);
         setCityList(data);
       };
-      console.log('fetching')
-      console.log('cityList', cityList)
       setIsFetchedData(true)
       fetchData();
     }
@@ -55,11 +54,18 @@ const [weatherIconUrl, setWeatherIconUrl] = useState(null);
       const selectedCity = location.state.selectedCity;
       setCity(selectedCity.city);
       setCityKey(selectedCity.cityKey);
-      setCityCurrentConditions(selectedCity.cityCurrentConditions)
-      setCity5DayConditions(selectedCity.city5DayConditions)
       dispatch(setLocation(selectedCity)); // Dispatch action to update Redux store
     }
-  }, [location.state]);
+  
+    if (locationStore.hasLocation) {
+      const {city,cityKey,currentConditions,fiveDayConditions} = locationStore;
+      setCity(city);
+      setCityKey(cityKey);
+      // dispatch(setLocation(selectedCity)); 
+    }
+    console.log('updateFromStore' ,city,cityKey,cityCurrentConditions ,locationStore)
+    // Add the properties from locationStore to the dependency array
+  }, [location.state, locationStore]);
   
 
   
@@ -67,8 +73,10 @@ const [weatherIconUrl, setWeatherIconUrl] = useState(null);
   const handleAddFav = () => {
     if(cityCurrentConditions)
     {
+      console.log('addFav')
       dispatch(addCityToFavorites({cityKey , city , cityCurrentConditions ,city5DayConditions}))
     }
+    console.log('clicked')
   }
   const handleRemoveFav = (cityKey) => {
     if(cityCurrentConditions)
@@ -122,14 +130,7 @@ const [weatherIconUrl, setWeatherIconUrl] = useState(null);
           />
         </Col>
         <Col>
-              
-          <Button variant="dark" onClick={() => fetchCurrentConditions(cityKey, setCityCurrentConditions)}>
-            GetCurrentData
-          </Button>
-          <Button variant="dark" onClick={() => fetch5DayConditions(cityKey, setCity5DayConditions)}>
-            Get5DayData
-          </Button>
-         
+            <DataFetch cityKey={cityKey}  />
         </Col>
       </Row>
 
@@ -140,8 +141,8 @@ const [weatherIconUrl, setWeatherIconUrl] = useState(null);
             citykey={cityKey}
             cityCurrentConditions={cityCurrentConditions}
             formatObservationDateTime={formatObservationDateTime}
-            weatherIconUrl={weatherIconUrl}
-            onAddFav={() => handleAddFav(cityCurrentConditions)}
+            weatherIconUrl={getImageIconUrl}
+            onAddFav={handleAddFav}
             onRemoveFav={() => handleRemoveFav(cityKey)}
             isFav={handleIsFav(cityKey)}
           />}

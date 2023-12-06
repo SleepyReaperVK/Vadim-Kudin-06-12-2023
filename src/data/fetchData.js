@@ -1,11 +1,11 @@
-const apikey = 'i4XnqVlC9fyGAXxKZgJ5c6gJqnvLdsqe'
+const apikey = 'coIFScTcDdlpVuVwWxgsdISi51A888hh'
 const fetchAutoComplete = async (city) => {
     try {
-      const response = await fetch(`http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${apikey}=${city}`);
+      const response = await fetch(`http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${apikey}&q=${city}`);
       const data = await response.json();
       return data;
     } catch (error) {
-      throw error
+      return error
     }
   };
 
@@ -14,9 +14,10 @@ const fetchAutoComplete = async (city) => {
       try {
         const response = await fetch(`http://dataservice.accuweather.com/currentconditions/v1/${cityKey}?apikey=${apikey}`);
         const data = await response.json();
+        console.log('data1', data[0])
         setCityCurrentConditions(data[0]);
       } catch (error) {
-        throw error
+        return error
       }
     }
     else{
@@ -32,7 +33,7 @@ const fetchAutoComplete = async (city) => {
         console.log('data2', data);
         setCity5DayConditions(data); // Assuming the 5-day forecast is in the 'DailyForecasts' property
       } catch (error) {
-        throw error
+        return error
       }
     } else {
        console.error('InvalidKey');
