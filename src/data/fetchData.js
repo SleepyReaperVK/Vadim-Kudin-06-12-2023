@@ -1,7 +1,7 @@
 const apikey = 'coIFScTcDdlpVuVwWxgsdISi51A888hh'
 const fetchAutoComplete = async (city) => {
-    try {
-      const response = await fetch(`http://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${apikey}&q=${city}`);
+    try {                           
+      const response = await fetch(`https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${apikey}&q=${city}`);
       const data = await response.json();
       return data;
     } catch (error) {
@@ -9,13 +9,12 @@ const fetchAutoComplete = async (city) => {
     }
   };
 
-  const fetchCurrentConditions = async (cityKey, setCityCurrentConditions) => {
+  const fetchCurrentConditions = async (cityKey) => {
     if(cityKey >= 1){ 
       try {
-        const response = await fetch(`http://dataservice.accuweather.com/currentconditions/v1/${cityKey}?apikey=${apikey}`);
+        const response = await fetch(`https://dataservice.accuweather.com/currentconditions/v1/${cityKey}?apikey=${apikey}`);
         const data = await response.json();
-        console.log('data1', data[0])
-        setCityCurrentConditions(data[0]);
+        return data[0]
       } catch (error) {
         return error
       }
@@ -25,13 +24,12 @@ const fetchAutoComplete = async (city) => {
     }
   };
 
-  const fetch5DayConditions = async (cityKey, setCity5DayConditions) => {
+  const fetch5DayConditions = async (cityKey) => {
     if (cityKey >= 1) {
       try {
-        const response = await fetch(`http://dataservice.accuweather.com/forecasts/v1/daily/5day/${cityKey}?apikey=${apikey}`);
+        const response = await fetch(`https://dataservice.accuweather.com/forecasts/v1/daily/5day/${cityKey}?apikey=${apikey}`);
         const data = await response.json();
-        console.log('data2', data);
-        setCity5DayConditions(data); // Assuming the 5-day forecast is in the 'DailyForecasts' property
+        return data;
       } catch (error) {
         return error
       }

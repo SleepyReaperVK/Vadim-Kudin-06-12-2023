@@ -8,6 +8,7 @@ const FiveDayData = ({ city5DayConditions, formatObservationDateTime, fetchImage
         <>
           {city5DayConditions.DailyForecasts.map((item) => (
             <Card key={item.EpochDate} className='p-2  mx-3'>
+            <p>Local Date {formatObservationDateTime(item.Date)}</p>
               {fetchImageIcon && (
                 <Card.Img
                   variant="top"
@@ -16,7 +17,7 @@ const FiveDayData = ({ city5DayConditions, formatObservationDateTime, fetchImage
                   onError={(e) => console.error('Error loading image:', e)}
                 />
               )}
-              <p>Local Observation Date Time: {formatObservationDateTime(item.Date)}</p>
+              <p>{item.Day.IconPhrase} ,{item.Temperature.Minimum.Value}/{item.Temperature.Maximum.Value} F </p>
             </Card>
           ))}
         </>

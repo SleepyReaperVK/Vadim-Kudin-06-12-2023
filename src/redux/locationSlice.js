@@ -4,8 +4,8 @@ const locationSlice = createSlice({
   name: "location",
   initialState: {
     hasLocation: false,
-    city: '',
-    key: 0,
+    city: 'Tel Aviv , Israel',
+    key: 215854,
     cityCurrentConditions: null,
     city5DayConditions: null,
   },
@@ -18,10 +18,10 @@ const locationSlice = createSlice({
       state.city5DayConditions = action.payload.city5DayConditions;
     },
     setCityCurrentConditions: (state, action) => {
-      state.cityCurrentConditions = action.payload.cityCurrentConditions;
+      state.cityCurrentConditions = action.payload;
     },
     setCity5DayConditions: (state, action) => {
-      state.city5DayConditions = action.payload.city5DayConditions;
+      state.city5DayConditions = action.payload;
     },
     clearLocation: (state) => {
       state.hasLocation = false;

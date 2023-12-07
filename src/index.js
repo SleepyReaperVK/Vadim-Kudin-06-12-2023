@@ -9,7 +9,7 @@ import './App.css'
 
 ReactDOM.render(
   <Provider store={store}>
-    <Router>
+    <Router basename='Vadim-Kudin-06-12-2023'>
         <App />
     </Router>
   </Provider>,

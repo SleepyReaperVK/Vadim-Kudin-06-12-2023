@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React from 'react';
 import { Route, Routes } from 'react-router-dom';
 import { useSelector } from 'react-redux';
 import CustomNavbar from './components/CustomNavbar';
@@ -11,10 +11,7 @@ function App() {
   document.body.classList.toggle('dark-theme', isDarkTheme);
 
  
-  useEffect(() => {
-    console.log('isDarkTheme changed:', isDarkTheme);
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  
 
   return (
     <div>
