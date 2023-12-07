@@ -17,6 +17,12 @@ const locationSlice = createSlice({
       state.cityCurrentConditions = action.payload.cityCurrentConditions;
       state.city5DayConditions = action.payload.city5DayConditions;
     },
+    setCityCurrentConditions: (state, action) => {
+      state.cityCurrentConditions = action.payload.cityCurrentConditions;
+    },
+    setCity5DayConditions: (state, action) => {
+      state.city5DayConditions = action.payload.city5DayConditions;
+    },
     clearLocation: (state) => {
       state.hasLocation = false;
       state.city = '';
@@ -27,6 +33,6 @@ const locationSlice = createSlice({
   },
 });
 
-export const { setLocation, clearLocation } = locationSlice.actions;
+export const { setLocation, clearLocation ,setCity5DayConditions , setCityCurrentConditions } = locationSlice.actions;
 
 export default locationSlice.reducer;

@@ -8,7 +8,14 @@ const SearchBar = ({ onSearch, onDropdownChange, city, cityList }) => {
     onDropdownChange(selectedCityKey, selectedCityContent);
   };
 
-  
+  const filterCityList = (searchValue) => {
+    const filteredCities = cityList.filter((item) =>
+      `${item.AdministrativeArea.LocalizedName}, ${item.Country.LocalizedName}`
+        .toLowerCase()
+        .includes(searchValue.toLowerCase())
+    );
+    return filteredCities;
+  };
 
   return (
     <Form.Group controlId="formCity">
@@ -17,7 +24,11 @@ const SearchBar = ({ onSearch, onDropdownChange, city, cityList }) => {
         type="text"
         placeholder="Enter city"
         value={city}
-        onChange={(e) => onSearch(e.target.value)}
+        onChange={(e) => {
+          const searchValue = e.target.value;
+          onSearch(searchValue);
+          const filteredCities = filterCityList(searchValue);
+        }}
       />
       {city.length > 2 && (
         <Form.Control as="select" multiple onChange={handleDropdownChange}>
