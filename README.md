@@ -24,5 +24,5 @@ To the Demo:[VadimKudin](https://sleepyreapervk.github.io/Vadim-Kudin-06-12-2023
     ► Needed a better errorhandle of fail to fetch.
     ►Switch the SearchBar for a Typeahead
 
-    ### ChangeLog
+ ### ChangeLog
     08/12/2023 - New API key added some responsivenec of small screens
