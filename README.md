@@ -21,3 +21,8 @@ To the Demo:[VadimKudin](https://sleepyreapervk.github.io/Vadim-Kudin-06-12-2023
     ► Use a Geolocation API to display the current city weather of the user.
     ► Change the icons to SVGs, possibly with some basic animations.
     ► Change the design and add a skeleton to populate the page a bit.
+    ► Needed a better errorhandle of fail to fetch.
+    ►Switch the SearchBar for a Typeahead
+
+    ### ChangeLog
+    08/12/2023 - New API key added some responsivenec of small screens
