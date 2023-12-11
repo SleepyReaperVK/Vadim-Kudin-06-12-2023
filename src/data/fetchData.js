@@ -1,4 +1,4 @@
-const apikey = 'coIFScTcDdlpVuVwWxgsdISi51A888hh'
+const apikey = '94pGiuaeVBE6kkL6PFnGdyTTYDZGXJjy'
 const fetchAutoComplete = async (city) => {
     try {                           
       const response = await fetch(`https://dataservice.accuweather.com/locations/v1/cities/autocomplete?apikey=${apikey}&q=${city}`);
