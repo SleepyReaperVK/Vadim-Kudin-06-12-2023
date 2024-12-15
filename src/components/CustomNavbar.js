@@ -41,7 +41,7 @@ function CustomNavbar() {
 
   return (
     <Navbar className={`theme-${isDarkTheme ? 'dark' : 'light'}`} expand="xxl">
-      <Navbar.Brand>Weather App</Navbar.Brand>
+      <Navbar.Brand>KKK & MM Welcome</Navbar.Brand>
       <Navbar.Toggle aria-controls="basic-navbar-nav" />
       <Navbar.Collapse  className="justify-content-end">
       <Nav  variant="tabs" defaultActiveKey="/">

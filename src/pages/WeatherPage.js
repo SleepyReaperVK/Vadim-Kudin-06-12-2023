@@ -13,8 +13,7 @@ import { addCityToFavorites ,removeKeyFromFavorites } from '../redux/favoritesSl
 
 import DataFetchCurrentData from '../data/DataFetchCurrentData';
 import DataFetch5Day from '../data/DataFetch5Day';
-
-
+import CustomTypeHead from '../components/CustomTypeHead';
 function WeatherPage() {
   const dispatch = useDispatch();
   const location = useLocation(); 
@@ -29,10 +28,8 @@ function WeatherPage() {
   const [cityList, setCityList] = useState([]);
   
   const [isFetchedData , setIsFetchedData] = useState(false)
-const [weatherIconUrl, setWeatherIconUrl] = useState(null);
   
-
-
+  
   useEffect(() => {
     
     if(!isFetchedData){
@@ -57,10 +54,8 @@ const [weatherIconUrl, setWeatherIconUrl] = useState(null);
       const selectedCity = location.state.selectedCity;
       setCity(selectedCity.city);
       setCityKey(selectedCity.cityKey);
-      dispatch(setLocation(selectedCity)); // Dispatch action to update Redux store
+      dispatch(setLocation(selectedCity));
     }
-  
-    // Add the properties from locationStore to the dependency array
   }, [location.state]);
   
 
@@ -117,6 +112,7 @@ const [weatherIconUrl, setWeatherIconUrl] = useState(null);
             city={city}
             cityList={cityList}
           />
+          <CustomTypeHead/>
         </Col>
         <Col>
         <DataFetchCurrentData cityKey={cityKey} />
